@@ -71,27 +71,28 @@ function generatePassword() {
     }
   }
   
-  //continuosly prompt user to accept at least one criteria 
+  //continuosly prompt user to accept at least one criterion 
   while (selectedCharTypes.length === 0) {
     //get the types of characters to put into the password
-    if (confirm("would you like upper case letters in your password?")) {
-    selectedCharTypes.push("upperLetter");
+    if (confirm("Would you like UPPER CASE letters in your password?")) {
+      selectedCharTypes.push("upperLetter");
     }
 
-    if (confirm("would you like lower case letters in your password?")) {
+    if (confirm("Would you like LOWER CASE letters in your password?")) {
       selectedCharTypes.push("lowerLetter");
     }
 
-    if (confirm("would you like numbers in your password?")) {
+    if (confirm("Would you like NUMBERS in your password?")) {
       selectedCharTypes.push("number");
     }
   
-    if (confirm("would you like special characters in your password?")) {
+    if (confirm("Would you like SPECIAL CHARACTERS in your password?")) {
       selectedCharTypes.push("specialChar");
     }
 
+    // alert user that they selected nothing
     if (selectedCharTypes.length === 0) {
-      alert("You havent selected any criteria. Please select at least one criteria to generate a password.")
+      alert("You haven't selected any criteria. Please select at least one criterion to generate a password.")
     }
 
   }
