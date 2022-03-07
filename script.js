@@ -52,81 +52,82 @@ function writePassword() {
 
 //generate password function
 function generatePassword() {
-  //set all variables to a clean slate
-  var selectedCharTypes= [];
-  var passwordLength;
-  var genPass = '';
+  //set all variables to a clean slate ready for new user input
+  var desiredCharTypes= [];
+  var desiredPassLen;
+  var generatedPass = '';
   
+  // vars for iterations later on
   var charTypeIndex;
   var randomCharIndex;
   var randomNumber;
 
-  //keep prompoitng user to n=input a password length that is a number and between 8 and 128
-  while (passwordLength === undefined || isNaN(parseInt(passwordLength)) || parseInt(passwordLength) < 8 || parseInt(passwordLength) > 128) {
-    passwordLength = prompt("How long would you like your password to be? Please enter a number between 8 and 128.");
+  //keep prompoitng user to input a password length that is a number and between 8 and 128
+  while (desiredPassLen === undefined || isNaN(parseInt(desiredPassLen)) || parseInt(desiredPassLen) < 8 || parseInt(desiredPassLen) > 128) {
+    desiredPassLen = prompt("How long would you like your password to be? Please enter a number between 8 and 128.");
 
-    // if the user presses cancel, then the password generating function will be canceled
-    if (passwordLength === null) {
+    //if the user presses cancel, then the password generating function will stop here
+    if (desiredPassLen === null) {
       return
     }
   }
   
-  //continuosly prompt user to accept at least one criterion 
-  while (selectedCharTypes.length === 0) {
+  //continuosly prompt user to select at least one criterion 
+  while (desiredCharTypes.length === 0) {
     //get the types of characters to put into the password
     if (confirm("Would you like UPPER CASE letters in your password?")) {
-      selectedCharTypes.push("upperLetter");
+      desiredCharTypes.push("upperLetter");
     }
 
     if (confirm("Would you like LOWER CASE letters in your password?")) {
-      selectedCharTypes.push("lowerLetter");
+      desiredCharTypes.push("lowerLetter");
     }
 
     if (confirm("Would you like NUMBERS in your password?")) {
-      selectedCharTypes.push("number");
+      desiredCharTypes.push("number");
     }
   
     if (confirm("Would you like SPECIAL CHARACTERS in your password?")) {
-      selectedCharTypes.push("specialChar");
+      desiredCharTypes.push("specialChar");
     }
 
     // alert user that they selected nothing
-    if (selectedCharTypes.length === 0) {
+    if (desiredCharTypes.length === 0) {
       alert("You haven't selected any criteria. Please select at least one criterion to generate a password.")
     }
 
   }
 
-  //convert desired password length to a numbber type
-  passwordLength = parseInt(passwordLength);
+  //convert desired password length to a number type
+  desiredPassLen = parseInt(desiredPassLen);
 
   //iterate for every character in the desired length of the password
-  for (var i = 0; i < passwordLength; i++) { 
-    //choose a random type by generating a random number to index into a list of selected chharacter types
-    charTypeIndex = Math.floor(Math.random()*(selectedCharTypes.length));
+  for (var i = 0; i < desiredPassLen; i++) { 
+    //choose a random type by generating a random number to index into a list of selected character types
+    charTypeIndex = Math.floor(Math.random()*(desiredCharTypes.length));
     
     //depending on the character type and randomised index, randomly choose a character of that type and appennd it to the running password
-    if (selectedCharTypes[charTypeIndex] === 'upperLetter'){ //if an upper case character
+    if (desiredCharTypes[charTypeIndex] === 'upperLetter'){ //if an upper case character
       randomCharIndex = Math.floor(Math.random()*25);
-      genPass = genPass + lowerLetters[randomCharIndex].toUpperCase();
+      generatedPass = generatedPass + lowerLetters[randomCharIndex].toUpperCase();
 
-    } else if (selectedCharTypes[charTypeIndex] === 'lowerLetter'){ // if a lower case character
+    } else if (desiredCharTypes[charTypeIndex] === 'lowerLetter'){ // if a lower case character
       randomCharIndex = Math.floor(Math.random()*25);
-      genPass = genPass + lowerLetters[randomCharIndex];
+      generatedPass = generatedPass + lowerLetters[randomCharIndex];
 
-    } else if (selectedCharTypes[charTypeIndex] === 'number') { //if a number
+    } else if (desiredCharTypes[charTypeIndex] === 'number') { //if a number
       randomNumber = Math.floor(Math.random()*9);
-      genPass = genPass + randomNumber;
+      generatedPass = generatedPass + randomNumber;
 
     } else { // else it will be a special character
       randomCharIndex = Math.floor(Math.random()*8);
-      genPass = genPass + specialChars[randomCharIndex];
+      generatedPass = generatedPass + specialChars[randomCharIndex];
 
     }
   }
 
   //retrun the final generated password
-  return genPass;
+  return generatedPass;
 }
 
 // Add event listener to generate button
