@@ -1,6 +1,7 @@
-// Assignment Code
+//Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+//characters by type
 var lowerLetters = [
   'a',
   'b',
@@ -47,7 +48,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 //generate password function
@@ -64,7 +64,7 @@ function generatePassword() {
 
   //keep prompoitng user to input a password length that is a number and between 8 and 128
   while (desiredPassLen === undefined || isNaN(parseInt(desiredPassLen)) || parseInt(desiredPassLen) < 8 || parseInt(desiredPassLen) > 128) {
-    desiredPassLen = prompt("How long would you like your password to be? Please enter a number between 8 and 128.");
+    desiredPassLen = prompt("1/5 - How long would you like your password to be? Please enter a number between 8 and 128.");
 
     //if the user presses cancel, then the password generating function will stop here
     if (desiredPassLen === null) {
@@ -75,25 +75,25 @@ function generatePassword() {
   //continuosly prompt user to select at least one criterion 
   while (desiredCharTypes.length === 0) {
     //get the types of characters to put into the password
-    if (confirm("Would you like UPPER CASE letters in your password?")) {
+    if (confirm("2/5 - Would you like UPPER CASE letters in your password?")) {
       desiredCharTypes.push("upperLetter");
     }
 
-    if (confirm("Would you like LOWER CASE letters in your password?")) {
+    if (confirm("3/5 - Would you like LOWER CASE letters in your password?")) {
       desiredCharTypes.push("lowerLetter");
     }
 
-    if (confirm("Would you like NUMBERS in your password?")) {
+    if (confirm("4/5 - Would you like NUMBERS in your password?")) {
       desiredCharTypes.push("number");
     }
   
-    if (confirm("Would you like SPECIAL CHARACTERS in your password?")) {
+    if (confirm("5/5 - Would you like SPECIAL CHARACTERS in your password?")) {
       desiredCharTypes.push("specialChar");
     }
 
     // alert user that they selected nothing
     if (desiredCharTypes.length === 0) {
-      alert("You haven't selected any criteria. Please select at least one criterion to generate a password.")
+      alert("Hey! You haven't selected any criteria. Please start select at least one criterion to generate a password. Click 'confirm' to start again.")
     }
 
   }
@@ -130,5 +130,5 @@ function generatePassword() {
   return generatedPass;
 }
 
-// Add event listener to generate button
+//Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
