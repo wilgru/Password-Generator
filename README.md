@@ -9,4 +9,4 @@ This is a website thhat can generate a password based on a fiven criteria. Built
 ### webpage URL
 
 Link to deployed website: 
-https://wilgru.github.io/Password-Generator/
+https://wilgru.github.io/Wills-Password-Generator/
